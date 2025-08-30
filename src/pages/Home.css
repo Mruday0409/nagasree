@@ -1,0 +1,177 @@
+.hero {
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.hero-background {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.8), rgba(41, 128, 185, 0.8));
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-text {
+  color: white;
+  flex: 1;
+  max-width: 500px;
+}
+
+.hero-title {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  line-height: 1.4;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  max-width: 300px;
+}
+
+.bus-illustration {
+  font-size: 150px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.booking-form-container {
+  position: relative;
+  z-index: 3;
+  margin-top: 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-content {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .hero-text {
+    max-width: 100%;
+  }
+  
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .hero-image {
+    max-width: 100%;
+  }
+  
+  .bus-illustration {
+    font-size: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 350px;
+  }
+  
+  .hero-background {
+    min-height: 350px;
+  }
+  
+  .hero-title {
+    font-size: 30px;
+  }
+  
+  .hero-subtitle {
+    font-size: 16px;
+  }
+  
+  .bus-illustration {
+    font-size: 100px;
+  }
+  
+  .hero-content {
+    gap: 25px;
+    padding: 0 15px;
+  }
+  
+  .booking-form-container {
+    margin-top: 15px;
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 300px;
+  }
+  
+  .hero-background {
+    min-height: 300px;
+  }
+  
+  .hero-title {
+    font-size: 24px;
+  }
+  
+  .hero-subtitle {
+    font-size: 14px;
+  }
+  
+  .bus-illustration {
+    font-size: 80px;
+  }
+  
+  .hero-content {
+    gap: 20px;
+    padding: 0 10px;
+  }
+  
+  .booking-form-container {
+    margin-top: 10px;
+    padding: 0 10px;
+  }
+}

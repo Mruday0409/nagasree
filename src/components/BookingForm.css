@@ -1,0 +1,409 @@
+/* Horizontal Booking Form Styles */
+.booking-form-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.horizontal-booking-form {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Form Fields Row */
+.form-fields-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+/* Search Button Row */
+.search-button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  background: rgba(248, 249, 250, 0.5);
+  border-radius: 0 0 17px 17px;
+}
+
+/* Form Fields */
+.form-field {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-field:not(:last-child) {
+  border-right: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 4px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.form-input {
+  width: 100%;
+  padding: 20px 24px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+  border-radius: 0;
+}
+
+.form-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.form-input:focus {
+  background: rgba(74, 144, 226, 0.05);
+}
+
+/* Date Selection Container - Custom Class for Manual Editing */
+.date-selection-container {
+  padding: 5px 5px;
+padding-left: 50px;
+  /* border: 2px solid #e0e0e0;  */
+  border-radius: 12px; /* You can customize this border radius */
+  background: transparent; /* You can customize this background */
+  transition: all 0.3s ease;
+}
+
+.date-selection-container:hover {
+  border-color: #4a90e2;
+}
+
+.date-selection-input {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+  /* margin-bottom: 10px; */
+}
+
+.date-selection-input:focus {
+  background: rgba(74, 144, 226, 0.05);
+}
+
+.date-quick-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.date-quick-btn {
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 4px 5px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.date-quick-btn:hover {
+  background: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+.date-quick-btn.active {
+  background: #4a90e2;
+  color: white;
+  border-color: #4a90e2;
+}
+
+/* Women Booking Container - Custom Class for Manual Editing */
+.women-booking-container {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  width: 500px;
+  /* padding: 20px 24px; */
+  /* border: 2px solid #e0e0e0; */
+  border-radius: 12px; /* You can customize this border radius */
+  background: transparent; /* You can customize this background */
+  transition: all 0.3s ease;
+}
+
+.women-booking-container:hover {
+  border-color: #ff6b6b;
+}
+
+.women-booking-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: linear-gradient(135deg, #ff6b6b, #ee5a24); */
+  padding: 5px;
+  flex-shrink: 0;
+}
+
+.women-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.women-booking-text-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.women-booking-main-text {
+  font-size: 12px;
+  font-weight: 500;
+  color: #333; /* You can customize this text color */
+  line-height: 1.2;
+}
+
+.women-booking-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.women-booking-link {
+  font-size: 12px;
+  color: #4a90e2; /* You can customize this link color */
+  text-decoration: underline;
+  cursor: pointer;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+/* Women Booking Toggle Switch - Custom Classes */
+.women-booking-toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.women-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.women-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc; /* You can customize inactive toggle background */
+  transition: 0.3s;
+  border-radius: 24px;
+}
+
+.women-toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white; /* You can customize toggle button color */
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.women-toggle-input:checked + .women-toggle-slider {
+  background-color: #4a90e2; /* You can customize active toggle background */
+}
+
+.women-toggle-input:checked + .women-toggle-slider:before {
+  transform: translateX(20px);
+}
+
+/* Search Button */
+.search-button {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 180px;
+  box-shadow: 0 2px 10px rgba(231, 76, 60, 0.2);
+}
+
+.search-button:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* Searchable Dropdown */
+.searchable-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.dropdown-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form-fields-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-field {
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .form-fields-row .form-field:last-child {
+    border-bottom: none;
+  }
+  
+  .search-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .date-selection-container,
+  .women-booking-container {
+    padding: 16px 20px;
+  }
+  
+  .search-button-row {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .booking-form-container {
+    padding: 15px;
+  }
+  
+  .horizontal-booking-form {
+    padding: 15px;
+    border-radius: 15px;
+  }
+  
+  .form-input {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+  
+  .search-button {
+    padding: 16px 24px;
+    font-size: 14px;
+  }
+  
+  .women-booking-container {
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  
+  .women-booking-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .women-booking-bottom-row {
+    gap: 8px;
+  }
+  
+  .date-selection-container {
+    padding: 14px 16px;
+  }
+  
+  .date-quick-buttons {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .horizontal-booking-form {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .form-input {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+  
+  .search-button {
+    padding: 14px 20px;
+    font-size: 14px;
+    min-width: auto;
+  }
+  
+  .women-booking-main-text {
+    font-size: 13px;
+  }
+  
+  .women-booking-link {
+    font-size: 11px;
+  }
+  
+  .date-selection-container,
+  .women-booking-container {
+    padding: 12px 14px;
+  }
+}

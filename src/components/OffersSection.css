@@ -1,0 +1,197 @@
+.offers-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e3f2fd 100%);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.offer-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.gradient-red::before {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.gradient-blue::before {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.gradient-green::before {
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.offer-content {
+  position: relative;
+  z-index: 2;
+}
+
+.offer-badge {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.offer-code {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.gradient-blue .offer-code {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.gradient-green .offer-code {
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.offer-details {
+  margin-bottom: 20px;
+}
+
+.offer-discount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 8px;
+}
+
+.offer-description {
+  font-size: 16px;
+  color: #34495e;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.offer-validity {
+  font-size: 14px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.offer-copy-btn {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gradient-blue .offer-copy-btn {
+  background: linear-gradient(90deg, #3498db, #2980b9);
+}
+
+.gradient-green .offer-copy-btn {
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+}
+
+.offer-copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.offer-decoration {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0.1;
+}
+
+.offer-icon {
+  font-size: 60px;
+  transform: rotate(15deg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .offers-section {
+    padding: 60px 0;
+  }
+  
+  .section-title {
+    font-size: 28px;
+  }
+  
+  .section-subtitle {
+    font-size: 16px;
+  }
+  
+  .offers-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .offer-card {
+    padding: 20px;
+  }
+  
+  .offer-discount {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .offers-section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .offer-card {
+    padding: 16px;
+  }
+}

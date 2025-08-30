@@ -1,0 +1,819 @@
+.seat-selection {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Header */
+.selection-header {
+  background: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.bus-service-info-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.bus-service-info {
+  text-align: left;
+}
+
+.bus-service-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 5px 0;
+}
+
+.bus-route {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+}
+
+.route-info h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* Progress Steps */
+.progress-steps {
+  background: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+}
+
+.step.active {
+  color: #e74c3c;
+}
+
+.step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.step.active .step-number {
+  background: #e74c3c;
+}
+
+.step-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 0;
+  min-height: calc(100vh - 200px);
+}
+
+/* Left Side - Seat Selection */
+.seat-selection-side {
+  background: white;
+  padding: 30px;
+}
+
+.decks-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.deck-section {
+  text-align: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #fafafa;
+}
+
+.deck-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.steering-icon {
+  font-size: 18px;
+}
+
+.seat-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 15px;
+  background: white;
+}
+
+.seat-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Driver Seat Styling */
+.driver-seat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-right: 30px;
+}
+
+.driver-seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+  border-radius: 12px;
+  border: 2px solid #bbb;
+  width: 60px;
+  height: 80px;
+}
+
+.driver-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.driver-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+}
+
+/* Sleeper Seat Base Styling */
+.seat {
+  width: 50px;
+  height: 99px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 6px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sleeper-seat {
+  border: 2px solid;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.seat-empty {
+  width: 45px;
+  height: 80px;
+}
+
+/* Column-specific CSS Classes */
+/* Lower Deck Columns */
+.lower-left-column {
+  margin-right: 15px;
+}
+
+.lower-middle-column {
+  margin-right: 50px;
+}
+
+.lower-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Column positioning only - no colors */
+.lower-left-column,
+.upper-left-column {
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+.lower-middle-column,
+.upper-middle-column {
+  margin-right: 20px;
+}
+
+.lower-right-column,
+.upper-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Individual Column Positioning Classes - For Manual Control */
+.seat-column.lower-left-column {
+  /* Lower deck left column positioning */
+  margin-left: 10px;
+  margin-right: 38px;
+}
+
+.seat-column.lower-middle-column {
+  /* Lower deck middle column positioning */
+  margin-left: 0;
+  margin-right: 0px;
+}
+
+.seat-column.lower-right-column {
+  /* Lower deck right column positioning */
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.seat-column.upper-left-column {
+  /* Upper deck left column positioning */
+  margin-left: 10px;
+  margin-right: 38px;
+}
+
+.seat-column.upper-middle-column {
+  /* Upper deck middle column positioning */
+  margin-left: 0;
+  margin-right: 0px;
+}
+
+.seat-column.upper-right-column {
+  /* Upper deck right column positioning */
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+/* Seat States */
+.seat.available {
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0) !important;
+  border-color: #9e9e9e !important;
+  color: #424242;
+  box-shadow: 0 3px 12px rgba(158, 158, 158, 0.2);
+}
+
+.seat.available:hover {
+  background: linear-gradient(135deg, #eeeeee, #d5d5d5) !important;
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(158, 158, 158, 0.3);
+}
+
+.seat.selected {
+  background: linear-gradient(135deg, #70e970dc, #e8ffe9) !important;
+  border-color: #4caf50 !important;
+  color: #2e7d32;
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+.seat.sold {
+  background: linear-gradient(135deg, #e4657867, #ffcdd2) !important;
+  border-color: #e0675e !important;
+  color: #c57878;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.seat-number {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.seat-price {
+  font-size: 9px;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin-top: auto;
+}
+
+/* Seat Legend */
+.seat-legend-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.seat-legend-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.legend-items {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.seat-demo {
+  width: 25px;
+  height: 40px;
+  border-radius: 8px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.seat-demo.available {
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  border-color: #9e9e9e;
+  color: #424242;
+}
+
+.seat-demo.selected {
+  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+  border-color: #4caf50;
+  color: #2e7d32;
+}
+
+.seat-demo.sold {
+  background: linear-gradient(135deg, #ffebee, #ffcdd2);
+  border-color: #f44336;
+  color: #c62828;
+}
+
+/* Right Side - Bus Details Section */
+.bus-details-side {
+  background: #f8f9fa;
+  border-left: 1px solid #e0e0e0;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Bus Header */
+.bus-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.bus-info h2.bus-operator {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.bus-schedule {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.bus-type {
+  font-size: 14px;
+  color: #888;
+}
+
+.bus-rating {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.rating-stars {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.rating-reviews {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Bus Images */
+.bus-images {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  overflow-x: auto;
+}
+
+.bus-image {
+  flex-shrink: 0;
+}
+
+.bus-image img {
+  width: 200px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #e0e0e0;
+}
+
+/* Bus Tabs */
+.bus-tabs {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 25px;
+  overflow-x: auto;
+}
+
+.bus-tabs .tab {
+  padding: 15px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.bus-tabs .tab.active {
+  color: #e74c3c;
+  border-bottom-color: #e74c3c;
+  background: #fff8f8;
+}
+
+/* Tab Content */
+.tab-content {
+  min-height: 200px;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tab-panel h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 20px 0;
+}
+
+/* Feature Cards */
+.feature-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.feature-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.feature-icon {
+  font-size: 24px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.feature-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.feature-arrow {
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Route Info */
+.route-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.route-duration {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.route-path {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Action Bar */
+.action-bar {
+  background: white;
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+}
+
+.selected-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.selected-info span {
+  font-size: 14px;
+  color: #333;
+}
+
+.total-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e74c3c;
+}
+
+.continue-btn {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.continue-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+/* Utility Classes for Seat Positioning */
+.seat-column-spacing-small {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.seat-column-spacing-medium {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.seat-column-spacing-large {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.seat-column-spacing-xl {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+/* Individual seat positioning within columns */
+.seat.lower-left-seat {
+  /* Specific styling for lower deck left column seats */
+}
+
+.seat.lower-middle-seat {
+  /* Specific styling for lower deck middle column seats */
+}
+
+.seat.lower-right-seat {
+  /* Specific styling for lower deck right column seats */
+}
+
+.seat.upper-left-seat {
+  /* Specific styling for upper deck left column seats */
+}
+
+.seat.upper-middle-seat {
+  /* Specific styling for upper deck middle column seats */
+}
+
+.seat.upper-right-seat {
+  /* Specific styling for upper deck right column seats */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .boarding-dropping-side {
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .decks-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .progress-steps {
+    gap: 20px;
+  }
+  
+  .legend-items {
+    gap: 15px;
+  }
+  
+  .progress-steps-container {
+    min-width: auto;
+    max-width: 100%;
+    margin-right: 0;
+    padding: 10px 15px;
+  }
+  
+  .progress-step .step-text {
+    font-size: 12px;
+  }
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+}
+
+.loading-state h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 15px 0;
+}
+
+.loading-state p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+
+.booking-progress {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.progress-steps-container {
+  max-width: 600px;
+  min-width: 500px;
+  margin-right: 30px;
+  justify-content: space-between;
+  padding: 15px 20px;
+  /* background: #f8f9fa; */
+  border-radius: 10px;
+  /* border: 1px solid #e0e0e0; */
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active {
+  color: #e74c3c;
+}
+
+.progress-step.completed {
+  color: #e74c3c;
+}
+
+.progress-step .step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.progress-step.active .step-number {
+  background: #e74c3c;
+}
+
+.progress-step.completed .step-number {
+  background: #e74c3c;
+}
+
+.progress-step .step-text {
+  font-size: 14px;
+  font-weight: 500;
+}
