@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -9,6 +9,7 @@ import PassengerInfo from './pages/PassengerInfo';
 import Payment from './pages/Payment';
 import Help from './pages/Help';
 import Profile from './pages/Profile';
+import Admin from './pages/Admin';
 import './App.css';
 
 function App() {
@@ -30,6 +31,26 @@ function App() {
     returnTotalAmount: 0
   });
 
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if admin is logged in
+    const adminLoggedIn = localStorage.getItem('nagasree_admin_logged_in') === 'true';
+    setIsAdminLoggedIn(adminLoggedIn);
+
+    // Listen for admin state changes
+    const handleAdminStateChange = () => {
+      const adminLoggedIn = localStorage.getItem('nagasree_admin_logged_in') === 'true';
+      setIsAdminLoggedIn(adminLoggedIn);
+    };
+
+    window.addEventListener('adminStateChanged', handleAdminStateChange);
+    
+    return () => {
+      window.removeEventListener('adminStateChanged', handleAdminStateChange);
+    };
+  }, []);
+
   const updateBookingData = (data) => {
     setBookingData(prev => ({ ...prev, ...data }));
   };
@@ -37,7 +58,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        {!isAdminLoggedIn && <Navbar />}
         <Routes>
           <Route path="/" element={<Home bookingData={bookingData} updateBookingData={updateBookingData} />} />
           <Route path="/search" element={<SearchResults bookingData={bookingData} updateBookingData={updateBookingData} />} />
@@ -49,6 +70,7 @@ function App() {
           <Route path="/payment" element={<Payment bookingData={bookingData} updateBookingData={updateBookingData} />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </Router>

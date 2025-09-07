@@ -6,39 +6,6 @@ import './SearchResults.css';
 const SearchResults = ({ bookingData, updateBookingData, isReturnJourney = false }) => {
   const navigate = useNavigate();
 
-  const buses = [
-    {
-      id: 1,
-      name: 'Nagasree Express',
-      type: 'AC Sleeper',
-      departureTime: '22:30',
-      arrivalTime: '06:00',
-      duration: '7h 30m',
-      rating: 4.5,
-      price: 850,
-      seatsAvailable: 12,
-      amenities: ['AC', 'WiFi', 'Charging Point', 'Water Bottle'],
-      busOperator: 'Nagasree Travels',
-      route: `${bookingData.from} → ${bookingData.to}`,
-      cancellationPolicy: 'Free cancellation till 2 hours before departure'
-    },
-    {
-      id: 2,
-      name: 'Nagasree Comfort',
-      type: 'Non-AC Seater',
-      departureTime: '08:00',
-      arrivalTime: '15:30',
-      duration: '7h 30m',
-      rating: 4.2,
-      price: 450,
-      seatsAvailable: 8,
-      amenities: ['Charging Point', 'Water Bottle', 'Reading Light'],
-      busOperator: 'Nagasree Travels',
-      route: `${bookingData.from} → ${bookingData.to}`,
-      cancellationPolicy: 'Free cancellation till 4 hours before departure'
-    }
-  ];
-
   const handleSelectBus = (bus) => {
     if (isReturnJourney) {
       updateBookingData({ returnSelectedBus: bus });
@@ -88,6 +55,43 @@ const SearchResults = ({ bookingData, updateBookingData, isReturnJourney = false
   const journeyFrom = isReturnJourney ? (bookingData.returnJourney?.from || 'Sringeri') : (bookingData.from || 'Bangalore');
   const journeyTo = isReturnJourney ? (bookingData.returnJourney?.to || 'Bangalore') : (bookingData.to || 'Sringeri');
   const journeyDate = isReturnJourney ? (bookingData.returnJourney?.date || new Date().toISOString()) : (bookingData.date || new Date().toISOString());
+
+  const buses = [
+    {
+      id: 1,
+      name: 'Nagasree Express',
+      type: 'AC Sleeper',
+      departureTime: '22:30',
+      arrivalTime: '06:00',
+      duration: '7h 30m',
+      rating: 4.5,
+      price: 850,
+      seatsAvailable: 12,
+      amenities: ['AC', 'WiFi', 'Charging Point', 'Water Bottle'],
+      busOperator: 'Nagasree Travels',
+      route: `${journeyFrom} → ${journeyTo}`,
+      from: journeyFrom,
+      to: journeyTo,
+      date: journeyDate,
+      cancellationPolicy: 'Free cancellation till 2 hours before departure'
+    },
+    // {
+    //   id: 2,
+    //   name: 'Nagasree Comfort',
+    //   type: 'Non-AC Seater',
+    //   departureTime: '08:00',
+    //   arrivalTime: '15:30',
+    //   duration: '7h 30m',
+    //   rating: 4.2,
+    //   price: 450,
+    //   seatsAvailable: 8,
+    //   amenities: ['Charging Point', 'Water Bottle', 'Reading Light'],
+    //   busOperator: 'Nagasree Travels',
+    //   route: `${journeyFrom} → ${journeyTo}`,
+    //   cancellationPolicy: 'Free cancellation till 4 hours before departure'
+    // }
+  ];
+
 
   return (
     <div className="search-results">

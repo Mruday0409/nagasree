@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import LoginModal from './LoginModal';
+import LoginDropdown from './LoginDropdown';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
 
   useEffect(() => {
     const checkLoginStatus = () => {
       const loggedIn = localStorage.getItem('nagasree_logged_in') === 'true';
       const user = localStorage.getItem('nagasree_current_user');
+      const adminLoggedIn = localStorage.getItem('nagasree_admin_logged_in') === 'true';
       
       setIsLoggedIn(loggedIn);
+      setIsAdminLoggedIn(adminLoggedIn);
       if (user) {
         setCurrentUser(JSON.parse(user));
       } else {
@@ -46,18 +48,24 @@ const Navbar = () => {
     window.dispatchEvent(new CustomEvent('loginStateChanged'));
   };
 
-  const handleLoginClick = () => {
-    setShowLoginModal(true);
+  const handleAdminLogout = () => {
+    localStorage.removeItem('nagasree_admin_logged_in');
+    setIsAdminLoggedIn(false);
+    // Dispatch event to notify other components
+    window.dispatchEvent(new CustomEvent('adminStateChanged'));
   };
 
   const handleLoginSuccess = () => {
-    setShowLoginModal(false);
     // Dispatch event to notify other components
     window.dispatchEvent(new CustomEvent('loginStateChanged'));
   };
 
-  const handleLoginClose = () => {
-    setShowLoginModal(false);
+  const handleAdminLoginSuccess = () => {
+    setIsAdminLoggedIn(true);
+    // Dispatch event to notify other components
+    window.dispatchEvent(new CustomEvent('adminStateChanged'));
+    // Auto-redirect to admin page
+    window.location.href = '/admin';
   };
 
   return (
@@ -80,33 +88,44 @@ const Navbar = () => {
               <span className="navbar-icon">❓</span>
               Help
             </Link>
-            {isLoggedIn ? (
-              <div className="user-menu">
-                <Link 
-                  to="/profile" 
-                  className="navbar-item profile-btn"
-                >
-                  <span className="navbar-icon">👤</span>
-                  {currentUser?.name}
+            
+            {/* Admin Section */}
+            {isAdminLoggedIn ? (
+              <div className="admin-menu">
+                <Link to="/admin" className="navbar-item admin-btn">
+                  <span className="navbar-icon">⚙️</span>
+                  Admin Panel
                 </Link>
+                <button className="navbar-item logout-btn" onClick={handleAdminLogout}>
+                  <span className="navbar-icon">🚪</span>
+                  Admin Logout
+                </button>
               </div>
             ) : (
-              <button className="navbar-item login-btn" onClick={handleLoginClick}>
-                <span className="navbar-icon">👤</span>
-                Login
-              </button>
+              <>
+                {/* User Section */}
+                {isLoggedIn ? (
+                  <div className="user-menu">
+                    <Link 
+                      to="/profile" 
+                      className="navbar-item profile-btn"
+                    >
+                      <span className="navbar-icon">👤</span>
+                      {currentUser?.name}
+                    </Link>
+                  </div>
+                ) : (
+                  <LoginDropdown 
+                    onLoginSuccess={handleLoginSuccess}
+                    onAdminLoginSuccess={handleAdminLoginSuccess}
+                  />
+                )}
+              </>
             )}
           </div>
         </div>
       </div>
       
-      {/* Login Modal */}
-      {showLoginModal && (
-        <LoginModal 
-          onLoginSuccess={handleLoginSuccess}
-          onClose={handleLoginClose}
-        />
-      )}
     </nav>
   );
 };

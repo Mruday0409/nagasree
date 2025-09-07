@@ -11,9 +11,9 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
   // Add default data to prevent blank screen on reload
   const defaultBus = {
     name: 'Nagasree Express',
-    from: 'Bangalore',
-    to: 'Sringeri',
-    date: '31 Aug',
+    from: bookingData?.from || 'Bangalore',
+    to: bookingData?.to || 'Sringeri',
+    date: bookingData?.date ? new Date(bookingData.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : '31 Aug',
     rating: '3.7',
     reviews: '203'
   };
@@ -21,6 +21,7 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
   const currentBus = isReturnJourney ? 
     (bookingData?.returnSelectedBus || defaultBus) : 
     (bookingData?.selectedBus || defaultBus);
+
 
   // If no booking data, use default data instead of redirecting
   if (!bookingData || Object.keys(bookingData).length === 0) {
@@ -31,60 +32,67 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
     };
   }
 
-  // Sample seat data with 3 vertical columns structure
-  const lowerDeckSeats = {
-    leftColumn: [
-      { id: 'L1', number: 'L1', status: 'available', price: 1399 },
-      { id: 'L2', number: 'L4', status: 'sold', price: 1399 },
-      { id: 'L3', number: 'L7', status: 'available', price: 1399 },
-      { id: 'L4', number: 'L10', status: 'available', price: 1399 },
-      { id: 'L5', number: 'L13', status: 'available', price: 1119 },
-      // { id: 'L6', number: '16', status: 'available', price: 1049 },
-    ],
-    middleColumn: [
-      { id: 'L7', number: 'L2', status: 'available', price: 1049 },
-      { id: 'L8', number: 'L5', status: 'available', price: 1049 },
-      { id: 'L9', number: 'L8', status: 'sold', price: 1049 },
-      { id: 'L10', number: 'L11', status: 'available', price: 1049 },
-      { id: 'L11', number: 'L14', status: 'sold', price: 1049 },
-      // { id: 'L12', number: '17', status: 'available', price: 1049 },
-    ],
-    rightColumn: [
-      { id: 'L13', number: 'L3', status: 'available', price: 1049 },
-      { id: 'L14', number: 'L6', status: 'available', price: 1049 },
-      { id: 'L15', number: 'L9', status: 'available', price: 1049 },
-      { id: 'L16', number: 'L12', status: 'sold', price: 1049 },
-      { id: 'L17', number: 'L15', status: 'available', price: 1049 },
-      // { id: 'L18', number: '18', status: 'available', price: 1049 },
-    ]
+  // Get seat data from localStorage (managed by admin) or use default
+  const getSeatData = () => {
+    const savedSeatData = localStorage.getItem('nagasree_seat_data');
+    if (savedSeatData) {
+      return JSON.parse(savedSeatData);
+    }
+    
+    // Default seat data if no admin data exists
+    return {
+      lowerDeck: {
+        leftColumn: [
+          { id: 'L1', number: 'L1', status: 'available', price: 1399 },
+          { id: 'L2', number: 'L4', status: 'sold', price: 1399 },
+          { id: 'L3', number: 'L7', status: 'available', price: 1399 },
+          { id: 'L4', number: 'L10', status: 'available', price: 1399 },
+          { id: 'L5', number: 'L13', status: 'available', price: 1119 },
+        ],
+        middleColumn: [
+          { id: 'L7', number: 'L2', status: 'available', price: 1049 },
+          { id: 'L8', number: 'L5', status: 'available', price: 1049 },
+          { id: 'L9', number: 'L8', status: 'sold', price: 1049 },
+          { id: 'L10', number: 'L11', status: 'available', price: 1049 },
+          { id: 'L11', number: 'L14', status: 'sold', price: 1049 },
+        ],
+        rightColumn: [
+          { id: 'L13', number: 'L3', status: 'available', price: 1049 },
+          { id: 'L14', number: 'L6', status: 'available', price: 1049 },
+          { id: 'L15', number: 'L9', status: 'available', price: 1049 },
+          { id: 'L16', number: 'L12', status: 'sold', price: 1049 },
+          { id: 'L17', number: 'L15', status: 'available', price: 1049 },
+        ]
+      },
+      upperDeck: {
+        leftColumn: [
+          { id: 'U1', number: 'U1', status: 'sold', price: 849 },
+          { id: 'U2', number: 'U4', status: 'available', price: 849 },
+          { id: 'U3', number: 'U7', status: 'sold', price: 849 },
+          { id: 'U4', number: 'U10', status: 'available', price: 849 },
+          { id: 'U5', number: 'U13', status: 'available', price: 849 },
+        ],
+        middleColumn: [
+          { id: 'U7', number: 'U2', status: 'available', price: 849 },
+          { id: 'U8', number: 'U5', status: 'sold', price: 849 },
+          { id: 'U9', number: 'U8', status: 'available', price: 849 },
+          { id: 'U10', number: 'U11', status: 'sold', price: 849 },
+          { id: 'U11', number: 'U14', status: 'available', price: 849 },
+        ],
+        rightColumn: [
+          { id: 'U13', number: 'U3', status: 'sold', price: 1299 },
+          { id: 'U14', number: 'U6', status: 'available', price: 1299 },
+          { id: 'U15', number: 'U9', status: 'sold', price: 1299 },
+          { id: 'U16', number: 'U12', status: 'available', price: 1299 },
+          { id: 'U17', number: 'U15', status: 'available', price: 1299 },
+        ]
+      }
+    };
   };
 
-  const upperDeckSeats = {
-    leftColumn: [
-      { id: 'U1', number: 'U1', status: 'sold', price: 849 },
-      { id: 'U2', number: 'U4', status: 'available', price: 849 },
-      { id: 'U3', number: 'U7', status: 'sold', price: 849 },
-      { id: 'U4', number: 'U10', status: 'available', price: 849 },
-      { id: 'U5', number: 'U13', status: 'available', price: 849 },
-      // { id: 'U6', number: '24', status: 'sold', price: 849 },
-    ],
-    middleColumn: [
-      { id: 'U7', number: 'U2', status: 'available', price: 849 },
-      { id: 'U8', number: 'U5', status: 'sold', price: 849 },
-      { id: 'U9', number: 'U8', status: 'available', price: 849 },
-      { id: 'U10', number: 'U11', status: 'sold', price: 849 },
-      { id: 'U11', number: 'U14', status: 'available', price: 849 },
-      // { id: 'U12', number: '30', status: 'sold', price: 849 },
-    ],
-    rightColumn: [
-      { id: 'U13', number: 'U3', status: 'sold', price: 1299 },
-      { id: 'U14', number: 'U6', status: 'available', price: 1299 },
-      { id: 'U15', number: 'U9', status: 'sold', price: 1299 },
-      { id: 'U16', number: 'U12', status: 'available', price: 1299 },
-      { id: 'U17', number: 'U15', status: 'available', price: 1299 },
-      // { id: 'U18', number: '36', status: 'sold', price: 1299 },
-    ]
-  };
+  const seatData = getSeatData();
+  const lowerDeckSeats = seatData.lowerDeck;
+  const upperDeckSeats = seatData.upperDeck;
 
 
 
@@ -148,8 +156,8 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
         <div className="selection-header">
           <div className="bus-service-info-container">
             <div className="bus-service-info">
-              <h1 className="bus-service-name">Nagasree Express</h1>
-              <p className="bus-route">Bangalore — Sringeri</p>
+              <h1 className="bus-service-name">{currentBus.name}</h1>
+              <p className="bus-route">{currentBus.from} — {currentBus.to}</p>
             </div>
           </div>
           <div className="booking-progress progress-steps-container">
@@ -246,8 +254,8 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
             {/* Bus Header */}
             <div className="bus-header">
               <div className="bus-info">
-                <h2 className="bus-operator">Nagasree Express</h2>
-                <div className="bus-schedule">22:45 - 05:30 - Sun 31 Aug</div>
+                <h2 className="bus-operator">{currentBus.name}</h2>
+                <div className="bus-schedule">22:45 - 05:30 - {currentBus.date}</div>
                 <div className="bus-type">NON A/C Sleeper (2+1)</div>
               </div>
               <div className="bus-rating">
@@ -313,7 +321,12 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
                 <div className="route-info">
                   <div className="route-duration">7 hr 15 min</div>
                   <div className="route-path">
-                    Bangalore ▸▸ Chikmagalur ▸▸ Aldur ▸▸ Balehonnur ▸▸ Jayapura ▸▸ Sringeri
+                    {currentBus.from === 'Bangalore' && currentBus.to === 'Sringeri' 
+                      ? 'Bangalore ▸▸ Chikmagalur ▸▸ Aldur ▸▸ Balehonnur ▸▸ Jayapura ▸▸ Sringeri'
+                      : currentBus.from === 'Sringeri' && currentBus.to === 'Bangalore'
+                      ? 'Sringeri ▸▸ Jayapura ▸▸ Balehonnur ▸▸ Aldur ▸▸ Chikmagalur ▸▸ Bangalore'
+                      : `${currentBus.from} ▸▸ ${currentBus.to}`
+                    }
                   </div>
                 </div>
               </div>

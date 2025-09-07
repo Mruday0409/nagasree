@@ -157,9 +157,9 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
     if (!bookingData.selectedBus) {
       bookingData.selectedBus = {
         name: 'Nagasree Express',
-        from: 'Bangalore',
-        to: 'Sringeri',
-        date: '31 Aug',
+        from: bookingData?.from || 'Bangalore',
+        to: bookingData?.to || 'Sringeri',
+        date: bookingData?.date ? new Date(bookingData.date).toLocaleDateString('en-US', { day: 'numeric', month: 'short' }) : '31 Aug',
         rating: '3.7',
         reviews: '203'
       };
@@ -190,8 +190,8 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
         <div className="selection-header">
           <div className="bus-service-info-container">
             <div className="bus-service-info">
-              <h1 className="bus-service-name">Nagasree Express</h1>
-              <p className="bus-route">Bangalore — Sringeri</p>
+              <h1 className="bus-service-name">{bookingData.selectedBus.name}</h1>
+              <p className="bus-route">{bookingData.selectedBus.from} — {bookingData.selectedBus.to}</p>
             </div>
           </div>
           <div className="booking-progress progress-steps-container">

@@ -96,10 +96,14 @@ const BookingForm = ({ onSearch, initialData }) => {
                   const value = e.target.value;
                   setFromSearchTerm(value);
                   setFromDropdownOpen(true);
-                  if (!value) {
+                  // Clear the selected city when user types or deletes
+                  if (formData.from && !cities.includes(value)) {
                     handleInputChange('from', '');
-                  } else if (cities.includes(value)) {
+                  }
+                  // Set the city if it matches exactly
+                  if (cities.includes(value)) {
                     handleInputChange('from', value);
+                    setFromSearchTerm('');
                   }
                 }}
                 onFocus={() => setFromDropdownOpen(true)}
@@ -134,10 +138,14 @@ const BookingForm = ({ onSearch, initialData }) => {
                   const value = e.target.value;
                   setToSearchTerm(value);
                   setToDropdownOpen(true);
-                  if (!value) {
+                  // Clear the selected city when user types or deletes
+                  if (formData.to && !cities.includes(value)) {
                     handleInputChange('to', '');
-                  } else if (cities.includes(value)) {
+                  }
+                  // Set the city if it matches exactly
+                  if (cities.includes(value)) {
                     handleInputChange('to', value);
+                    setToSearchTerm('');
                   }
                 }}
                 onFocus={() => setToDropdownOpen(true)}
