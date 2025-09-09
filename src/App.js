@@ -35,19 +35,32 @@ function App() {
 
   useEffect(() => {
     // Check if admin is logged in
-    const adminLoggedIn = localStorage.getItem('nagasree_admin_logged_in') === 'true';
-    setIsAdminLoggedIn(adminLoggedIn);
-
-    // Listen for admin state changes
-    const handleAdminStateChange = () => {
+    const checkAdminStatus = () => {
       const adminLoggedIn = localStorage.getItem('nagasree_admin_logged_in') === 'true';
       setIsAdminLoggedIn(adminLoggedIn);
     };
 
+    // Initial check
+    checkAdminStatus();
+
+    // Listen for admin state changes
+    const handleAdminStateChange = () => {
+      checkAdminStatus();
+    };
+
+    // Listen for storage changes (in case of multiple tabs)
+    const handleStorageChange = (e) => {
+      if (e.key === 'nagasree_admin_logged_in') {
+        checkAdminStatus();
+      }
+    };
+
     window.addEventListener('adminStateChanged', handleAdminStateChange);
+    window.addEventListener('storage', handleStorageChange);
     
     return () => {
       window.removeEventListener('adminStateChanged', handleAdminStateChange);
+      window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
 
@@ -71,6 +84,7 @@ function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="*" element={<Home bookingData={bookingData} updateBookingData={updateBookingData} />} />
         </Routes>
       </div>
     </Router>
