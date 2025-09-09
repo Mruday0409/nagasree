@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoginModal from '../components/LoginModal';
 import './SeatSelection.css';
 import driver from '../assests/driver.png';
 
 const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isReturnJourney = false }) => {
   const navigate = useNavigate();
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [pendingSeatSelection, setPendingSeatSelection] = useState(null);
 
 
   // Add default data to prevent blank screen on reload
@@ -99,6 +102,17 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
   const handleSeatClick = (seat) => {
     if (seat.status === 'sold') return;
 
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem('nagasree_logged_in') === 'true';
+    
+    if (!isLoggedIn) {
+      // Show login modal before allowing seat selection
+      setPendingSeatSelection(seat);
+      setShowLoginModal(true);
+      return;
+    }
+
+    // User is logged in, proceed with seat selection
     const isSelected = selectedSeats.find(s => s.id === seat.id);
     if (isSelected) {
       setSelectedSeats(selectedSeats.filter(s => s.id !== seat.id));
@@ -109,6 +123,27 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
 
   const getTotalAmount = () => {
     return selectedSeats.reduce((total, seat) => total + seat.price, 0);
+  };
+
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false);
+    if (pendingSeatSelection) {
+      // After successful login, proceed with the seat selection
+      const isSelected = selectedSeats.find(s => s.id === pendingSeatSelection.id);
+      if (isSelected) {
+        setSelectedSeats(selectedSeats.filter(s => s.id !== pendingSeatSelection.id));
+      } else {
+        setSelectedSeats([...selectedSeats, pendingSeatSelection]);
+      }
+      setPendingSeatSelection(null);
+    }
+    // Dispatch a custom event to notify navbar about login state change
+    window.dispatchEvent(new CustomEvent('loginStateChanged'));
+  };
+
+  const handleLoginClose = () => {
+    setShowLoginModal(false);
+    setPendingSeatSelection(null);
   };
 
   const renderSeat = (seat, columnType = '') => {
@@ -347,6 +382,14 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
           </div>
         )}
       </div>
+
+      {/* Login Modal */}
+      {showLoginModal && (
+        <LoginModal 
+          onLoginSuccess={handleLoginSuccess}
+          onClose={handleLoginClose}
+        />
+      )}
     </div>
   );
 };

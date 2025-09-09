@@ -38,8 +38,8 @@ const Admin = () => {
     localStorage.removeItem('nagasree_admin_user');
     // Dispatch event to notify other components
     window.dispatchEvent(new CustomEvent('adminStateChanged'));
-    // Use navigate instead of window.location.href for better SPA behavior
-    navigate('/', { replace: true });
+    // Force a page reload to ensure clean state
+    window.location.href = '/';
   };
 
   if (!isAdminLoggedIn) {

@@ -85,11 +85,11 @@ const BookingForm = ({ onSearch, initialData }) => {
         {/* Main Form Fields Row */}
         <div className="form-fields-row">
           {/* From Input */}
-          <div className="form-field">
+          <div className="form-field from-field">
             <div className="searchable-dropdown">
               <input
                 type="text"
-                className="form-input"
+                className="from-input"
                 placeholder="From"
                 value={formData.from || fromSearchTerm}
                 onChange={(e) => {
@@ -127,11 +127,11 @@ const BookingForm = ({ onSearch, initialData }) => {
           </div>
 
           {/* To Input */}
-          <div className="form-field">
+          <div className="form-field to-field">
             <div className="searchable-dropdown">
               <input
                 type="text"
-                className="form-input"
+                className="to-input"
                 placeholder="To"
                 value={formData.to || toSearchTerm}
                 onChange={(e) => {
@@ -169,11 +169,11 @@ const BookingForm = ({ onSearch, initialData }) => {
           </div>
 
           {/* Date Input - Separate Container */}
-          <div className="form-field">
+          <div className="form-field date-field">
             <div className="date-selection-container">
               <input
                 type="date"
-                className="date-selection-input"
+                className="date-input"
                 placeholder="Date of Journey"
                 value={formData.date}
                 onChange={(e) => handleInputChange('date', e.target.value)}

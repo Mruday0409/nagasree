@@ -41,17 +41,20 @@
   min-width: 200px;
 }
 
-.form-field:not(:last-child) {
+/* .form-field:not(:last-child) {
   border-right: 1px solid #e0e0e0;
   border-top: 1px solid #e0e0e0;
   border-radius: 4px;
   border-bottom: 1px solid #e0e0e0;
-}
+  border-left:none;
 
+} */
+
+/* Base input styles - shared by all input types */
 .form-input {
   width: 100%;
   padding: 20px 24px;
-  border: none;
+
   background: transparent;
   font-size: 16px;
   font-weight: 500;
@@ -69,13 +72,98 @@
   background: rgba(74, 144, 226, 0.05);
 }
 
+/* From Input Styles */
+.from-input {
+  width: 100%;
+  padding: 5px;
+  height: 48px;
+  border: none;
+
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+}
+
+.from-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.from-input:focus {
+  background: rgba(74, 144, 226, 0.05);
+}
+
+/* To Input Styles */
+.to-input {
+  width: 100%;
+  padding: 5px;
+  height: 48px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  outline: none;
+}
+
+.to-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.to-input:focus {
+  background: rgba(74, 144, 226, 0.05);
+}
+
+/* From Field Container */
+.from-field .searchable-dropdown {
+  padding: 5px 5px;
+  padding-left: 24px;
+  border-radius: 12px;
+  background: transparent;
+  border-top:1px solid #e0e0e0;
+border-bottom:1px solid #e0e0e0;
+border-right:1px solid #e0e0e0;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+  transition: all 0.3s ease;
+}
+
+.from-field .searchable-dropdown:hover {
+  border-color: #4a90e2;
+}
+
+/* To Field Container */
+.to-field .searchable-dropdown {
+  padding: 5px 5px;
+  padding-left: 24px;
+  border-radius: 12px;
+  border-top:1px solid #e0e0e0;
+  border-bottom:1px solid #e0e0e0;
+  /* border-right:1px solid #e0e0e0; */
+  border-radius: 0px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.to-field .searchable-dropdown:hover {
+  border-color: #4a90e2;
+}
+
 /* Date Selection Container - Custom Class for Manual Editing */
 .date-selection-container {
   padding: 5px 5px;
-padding-left: 50px;
-  /* border: 2px solid #e0e0e0;  */
-  border-radius: 12px; /* You can customize this border radius */
-  background: transparent; /* You can customize this background */
+  padding-left: 24px;
+  border-radius: 12px;
+  border-top:1px solid #e0e0e0;
+  border-bottom:1px solid #e0e0e0;
+  border-right:1px solid #e0e0e0;
+  border-left:1px solid #e0e0e0;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  background: transparent;
   transition: all 0.3s ease;
 }
 
@@ -83,7 +171,8 @@ padding-left: 50px;
   border-color: #4a90e2;
 }
 
-.date-selection-input {
+/* Date Input Styles */
+.date-input {
   width: 100%;
   padding: 5px;
   border: none;
@@ -92,10 +181,9 @@ padding-left: 50px;
   font-weight: 500;
   color: #333;
   outline: none;
-  /* margin-bottom: 10px; */
 }
 
-.date-selection-input:focus {
+.date-input:focus {
   background: rgba(74, 144, 226, 0.05);
 }
 

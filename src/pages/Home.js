@@ -12,18 +12,9 @@ const Home = ({ bookingData, updateBookingData }) => {
   const [pendingSearch, setPendingSearch] = useState(null);
 
   const handleSearch = (searchData) => {
-    // Check if user is already logged in
-    const isLoggedIn = localStorage.getItem('nagasree_logged_in') === 'true';
-    
-    if (isLoggedIn) {
-      // User is already logged in, proceed with search
-      updateBookingData(searchData);
-      navigate('/search');
-    } else {
-      // Show login modal before search
-      setPendingSearch(searchData);
-      setShowLoginModal(true);
-    }
+    // Allow search without login - login will be required later when selecting seats
+    updateBookingData(searchData);
+    navigate('/search');
   };
 
   const handleLoginSuccess = () => {
