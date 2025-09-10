@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaRoad, FaMobile, FaShieldAlt, FaStar } from 'react-icons/fa';
 import './WhatsNewSection.css';
 
 const WhatsNewSection = () => {
@@ -8,7 +9,7 @@ const WhatsNewSection = () => {
       title: 'New Route Added',
       description: 'We have added more convenient timings for Bangalore - Sringeri route',
       date: '2 days ago',
-      icon: '🛣️',
+      icon: <FaRoad />,
       category: 'Routes'
     },
     {
@@ -16,7 +17,7 @@ const WhatsNewSection = () => {
       title: 'Mobile App Launch',
       description: 'Book tickets on the go with our new mobile application',
       date: '1 week ago',
-      icon: '📱',
+      icon: <FaMobile />,
       category: 'Technology'
     },
     {
@@ -24,7 +25,7 @@ const WhatsNewSection = () => {
       title: 'Safety First',
       description: 'Enhanced safety measures and sanitization protocols implemented',
       date: '2 weeks ago',
-      icon: '🛡️',
+      icon: <FaShieldAlt />,
       category: 'Safety'
     },
     {
@@ -32,7 +33,7 @@ const WhatsNewSection = () => {
       title: 'Loyalty Program',
       description: 'Earn points on every booking and get exclusive discounts',
       date: '3 weeks ago',
-      icon: '⭐',
+      icon: <FaStar />,
       category: 'Rewards'
     }
   ];

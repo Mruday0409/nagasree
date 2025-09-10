@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaSun, FaCloud, FaMoon, FaCloudSun } from 'react-icons/fa';
 import BusCard from '../components/BusCard';
 import './SearchResults.css';
 
@@ -140,7 +141,7 @@ const SearchResults = ({ bookingData, updateBookingData, isReturnJourney = false
                 <label className="filter-option">
                   <input type="checkbox" /> 
                   <span className="time-slot">
-                    <span className="time-icon">🌅</span>
+                    <span className="time-icon"><FaCloudSun /></span>
                     Early Morning<br />
                     <small>12 AM - 6 AM</small>
                   </span>
@@ -148,7 +149,7 @@ const SearchResults = ({ bookingData, updateBookingData, isReturnJourney = false
                 <label className="filter-option">
                   <input type="checkbox" /> 
                   <span className="time-slot">
-                    <span className="time-icon">☀️</span>
+                    <span className="time-icon"><FaSun /></span>
                     Morning<br />
                     <small>6 AM - 12 PM</small>
                   </span>
@@ -156,7 +157,7 @@ const SearchResults = ({ bookingData, updateBookingData, isReturnJourney = false
                 <label className="filter-option">
                   <input type="checkbox" /> 
                   <span className="time-slot">
-                    <span className="time-icon">🌤️</span>
+                    <span className="time-icon"><FaCloud /></span>
                     Afternoon<br />
                     <small>12 PM - 6 PM</small>
                   </span>
@@ -164,7 +165,7 @@ const SearchResults = ({ bookingData, updateBookingData, isReturnJourney = false
                 <label className="filter-option">
                   <input type="checkbox" /> 
                   <span className="time-slot">
-                    <span className="time-icon">🌙</span>
+                    <span className="time-icon"><FaMoon /></span>
                     Night<br />
                     <small>6 PM - 12 AM</small>
                   </span>

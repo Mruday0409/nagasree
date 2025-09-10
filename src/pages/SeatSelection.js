@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaBus, FaStar, FaFemale, FaWifi, FaTicketAlt } from 'react-icons/fa';
 import LoginModal from '../components/LoginModal';
 import './SeatSelection.css';
 import driver from '../assests/driver.png';
@@ -222,7 +223,7 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
               {/* Lower Deck */}
               <div className="deck-section lower-deck">
                 <div className="deck-header">
-                  <span className="steering-icon">🚌</span>
+                  <span className="steering-icon"><FaBus /></span>
                   <span className="deck-title">Lower deck</span>
                 </div>
                 {/* Driver Seat positioned in front of seat L1 */}
@@ -294,7 +295,7 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
                 <div className="bus-type">NON A/C Sleeper (2+1)</div>
               </div>
               <div className="bus-rating">
-                <div className="rating-stars">★ 3.7</div>
+                <div className="rating-stars"><FaStar /> 3.7</div>
                 <div className="rating-reviews">203 reviews</div>
               </div>
             </div>
@@ -328,11 +329,11 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
                 <h3>Why book this bus?</h3>
                 <div className="feature-cards">
                   <div className="feature-card">
-                    <div className="feature-icon">👩</div>
+                    <div className="feature-icon"><FaFemale /></div>
                     <div className="feature-text">Highly rated by women</div>
                   </div>
                   <div className="feature-card">
-                    <div className="feature-icon">📍📶</div>
+                    <div className="feature-icon"><FaWifi /></div>
                     <div className="feature-content">
                       <div className="feature-title">Live Tracking</div>
                       <div className="feature-desc">You can now track your bus and plan your commute to the boarding...</div>
@@ -340,7 +341,7 @@ const SeatSelection = ({ bookingData = {}, updateBookingData = () => {}, isRetur
                     <div className="feature-arrow">▼</div>
                   </div>
                   <div className="feature-card">
-                    <div className="feature-icon">🎫</div>
+                    <div className="feature-icon"><FaTicketAlt /></div>
                     <div className="feature-content">
                       <div className="feature-title">Flexi Ticket</div>
                       <div className="feature-desc">Change your travel date for free up to 8 hours before the depature. Ge...</div>

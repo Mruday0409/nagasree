@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaLock, FaTimes } from 'react-icons/fa';
 import './AdminLoginModal.css';
 
 const AdminLoginModal = ({ onLoginSuccess, onClose }) => {
@@ -62,9 +63,9 @@ const AdminLoginModal = ({ onLoginSuccess, onClose }) => {
     <div className="admin-login-modal-overlay">
       <div className="admin-login-modal">
         <div className="admin-login-header">
-          <h2>🔐 Admin Login</h2>
+          <h2><FaLock /> Admin Login</h2>
           <button className="close-btn" onClick={handleClose}>
-            ✕
+            <FaTimes />
           </button>
         </div>
 

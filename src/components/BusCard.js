@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaStar, FaCheck } from 'react-icons/fa';
 import './BusCard.css';
 
 const BusCard = ({ bus, onSelect }) => {
@@ -10,16 +11,16 @@ const BusCard = ({ bus, onSelect }) => {
     const hasHalfStar = rating % 1 !== 0;
     
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={i} className="star filled">★</span>);
+      stars.push(<span key={i} className="star filled"><FaStar /></span>);
     }
     
     if (hasHalfStar) {
-      stars.push(<span key="half" className="star half">★</span>);
+      stars.push(<span key="half" className="star half"><FaStar /></span>);
     }
     
     const remainingStars = 5 - Math.ceil(rating);
     for (let i = 0; i < remainingStars; i++) {
-      stars.push(<span key={`empty-${i}`} className="star empty">★</span>);
+      stars.push(<span key={`empty-${i}`} className="star empty"><FaStar /></span>);
     }
     
     return stars;
@@ -105,7 +106,7 @@ const BusCard = ({ bus, onSelect }) => {
             <div className="amenities-list">
               {bus.amenities.map((amenity, index) => (
                 <span key={index} className="amenity-item">
-                  ✓ {amenity}
+                  <FaCheck /> {amenity}
                 </span>
               ))}
             </div>

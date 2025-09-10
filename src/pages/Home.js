@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaBus } from 'react-icons/fa';
 import BookingForm from '../components/BookingForm';
 import OffersSection from '../components/OffersSection';
 import WhatsNewSection from '../components/WhatsNewSection';
@@ -53,7 +54,7 @@ const Home = ({ bookingData, updateBookingData }) => {
               
               <div className="hero-image">
                 <div className="bus-illustration">
-                  🚌
+                  <FaBus />
                 </div>
               </div>
             </div>

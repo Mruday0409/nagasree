@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FaLock, FaUser, FaCog } from 'react-icons/fa';
 import LoginModal from './LoginModal';
 import AdminLoginModal from './AdminLoginModal';
 import './LoginDropdown.css';
@@ -57,7 +58,7 @@ const LoginDropdown = ({ onLoginSuccess, onAdminLoginSuccess }) => {
           className="login-dropdown-btn"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="login-icon">🔐</span>
+          <span className="login-icon"><FaLock /></span>
           Login
           <span className={`dropdown-arrow ${isOpen ? 'open' : ''}`}>▼</span>
         </button>
@@ -65,11 +66,11 @@ const LoginDropdown = ({ onLoginSuccess, onAdminLoginSuccess }) => {
         {isOpen && (
           <div className="login-dropdown-menu">
             <div className="dropdown-item" onClick={handleUserLoginClick}>
-              <span className="item-icon">👤</span>
+              <span className="item-icon"><FaUser /></span>
               <span className="item-text">Customer Login</span>
             </div>
             <div className="dropdown-item admin-item" onClick={handleAdminLoginClick}>
-              <span className="item-icon">⚙️</span>
+              <span className="item-icon"><FaCog /></span>
               <span className="item-text">Admin Login</span>
             </div>
           </div>

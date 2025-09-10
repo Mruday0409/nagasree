@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaUsers, FaClipboardList, FaExclamationTriangle, FaCheck, FaEnvelope } from 'react-icons/fa';
 import './PassengerInfo.css';
 
 const PassengerInfo = ({ bookingData, updateBookingData }) => {
@@ -68,6 +69,9 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
     console.log('Validating passenger details:', passengerDetails);
     console.log('Validating contact details:', contactDetails);
     
+    // Set processing state
+    setIsProcessing(true);
+    
     // Clear previous errors
     setErrors({ passengers: [], contact: {} });
     
@@ -102,6 +106,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
     // Check if there are any errors
     if (passengerErrors.some(error => error && Object.keys(error).length > 0) || Object.keys(contactErrors).length > 0) {
       setErrors({ passengers: passengerErrors, contact: contactErrors });
+      setIsProcessing(false);
       return;
     }
 
@@ -140,6 +145,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
     
     // Navigate to payment page after a short delay to show success message
     setTimeout(() => {
+      setIsProcessing(false);
       navigate('/payment');
     }, 1500);
   };
@@ -243,7 +249,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
           {/* Passenger Details Form */}
           <div className="passenger-form-section">
             <div className="section-header">
-              <h3>👥 Passenger Details</h3>
+              <h3><FaUsers /> Passenger Details</h3>
               <p>Please provide details for all passengers. All fields marked with * are required.</p>
             </div>
             
@@ -255,7 +261,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
               padding: '15px', 
               marginBottom: '20px' 
             }}>
-              <h4 style={{ margin: '0 0 10px 0', color: '#0c5460' }}>📋 What you need to fill:</h4>
+              <h4 style={{ margin: '0 0 10px 0', color: '#0c5460' }}><FaClipboardList /> What you need to fill:</h4>
               <ul style={{ margin: 0, paddingLeft: '20px', color: '#0c5460' }}>
                 <li><strong>Full Name:</strong> Enter the complete name as it appears on ID proof</li>
                 <li><strong>Age:</strong> Must be between 1 and 100 years</li>
@@ -273,7 +279,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
                 padding: '15px', 
                 marginBottom: '20px' 
               }}>
-                <h4 style={{ margin: '0 0 10px 0', color: '#721c24' }}>⚠️ Please fix the following errors:</h4>
+                <h4 style={{ margin: '0 0 10px 0', color: '#721c24' }}><FaExclamationTriangle /> Please fix the following errors:</h4>
                 <ul style={{ margin: 0, paddingLeft: '20px', color: '#721c24' }}>
                   {errors.passengers.map((error, index) => {
                     if (error && Object.keys(error).length > 0) {
@@ -303,7 +309,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
                 padding: '15px', 
                 marginBottom: '20px' 
               }}>
-                <h4 style={{ margin: '0 0 10px 0', color: '#155724' }}>✅ All details are valid!</h4>
+                <h4 style={{ margin: '0 0 10px 0', color: '#155724' }}><FaCheck /> All details are valid!</h4>
                 <p style={{ margin: 0, color: '#155724' }}>
                   You can now proceed to the payment page.
                 </p>
@@ -381,7 +387,7 @@ const PassengerInfo = ({ bookingData, updateBookingData }) => {
           {/* Contact Details */}
           <div className="contact-form-section">
             <div className="section-header">
-              <h3>📧 Contact Details</h3>
+              <h3><FaEnvelope /> Contact Details</h3>
               <p>We'll send booking confirmation to these details</p>
             </div>
             

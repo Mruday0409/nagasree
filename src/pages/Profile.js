@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
 import './Profile.css';
 
 const Profile = () => {
@@ -149,7 +150,7 @@ const Profile = () => {
                         Edit Profile
                       </button>
                       <button className="logout-btn" onClick={handleLogout}>
-                        <span className="logout-icon">🚪</span>
+                        <span className="logout-icon"><FaSignOutAlt /></span>
                         Logout
                       </button>
                     </div>

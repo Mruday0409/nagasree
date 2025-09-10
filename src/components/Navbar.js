@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaBus, FaQuestionCircle, FaCog, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import LoginDropdown from './LoginDropdown';
 import './Navbar.css';
 
@@ -39,14 +40,14 @@ const Navbar = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('nagasree_logged_in');
-    localStorage.removeItem('nagasree_current_user');
-    setIsLoggedIn(false);
-    setCurrentUser(null);
-    // Dispatch event to notify other components
-    window.dispatchEvent(new CustomEvent('loginStateChanged'));
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem('nagasree_logged_in');
+  //   localStorage.removeItem('nagasree_current_user');
+  //   setIsLoggedIn(false);
+  //   setCurrentUser(null);
+  //   // Dispatch event to notify other components
+  //   window.dispatchEvent(new CustomEvent('loginStateChanged'));
+  // };
 
   const handleAdminLogout = () => {
     localStorage.removeItem('nagasree_admin_logged_in');
@@ -81,11 +82,11 @@ const Navbar = () => {
           
           <div className="navbar-menu">
             <Link to="/" className="navbar-item">
-              <span className="navbar-icon">🚌</span>
+              <span className="navbar-icon"><FaBus /></span>
               Bus Booking
             </Link>
             <Link to="/help" className="navbar-item">
-              <span className="navbar-icon">❓</span>
+              <span className="navbar-icon"><FaQuestionCircle /></span>
               Help
             </Link>
             
@@ -93,11 +94,11 @@ const Navbar = () => {
             {isAdminLoggedIn ? (
               <div className="admin-menu">
                 <Link to="/admin" className="navbar-item admin-btn">
-                  <span className="navbar-icon">⚙️</span>
+                  <span className="navbar-icon"><FaCog /></span>
                   Admin Panel
                 </Link>
                 <button className="navbar-item logout-btn" onClick={handleAdminLogout}>
-                  <span className="navbar-icon">🚪</span>
+                  <span className="navbar-icon"><FaSignOutAlt /></span>
                   Admin Logout
                 </button>
               </div>
@@ -110,7 +111,7 @@ const Navbar = () => {
                       to="/profile" 
                       className="navbar-item profile-btn"
                     >
-                      <span className="navbar-icon">👤</span>
+                      <span className="navbar-icon"><FaUser /></span>
                       {currentUser?.name}
                     </Link>
                   </div>

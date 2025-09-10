@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  FaExclamationTriangle, 
+  FaUsers, 
+  FaEnvelope, 
+  FaCreditCard, 
+  FaMobile, 
+  FaUniversity 
+} from 'react-icons/fa';
 import './Payment.css';
 
 const Payment = ({ bookingData, updateBookingData }) => {
@@ -38,17 +46,17 @@ const Payment = ({ bookingData, updateBookingData }) => {
     if (bookingData.contactDetails) {
       setContactDetails(bookingData.contactDetails);
     }
-  }, [bookingData.passengerDetails, bookingData.contactDetails]);
+  }, [bookingData]);
 
-  const handlePassengerChange = (index, field, value) => {
-    const updated = [...passengerDetails];
-    updated[index] = { ...updated[index], [field]: value };
-    setPassengerDetails(updated);
-  };
+  // const handlePassengerChange = (index, field, value) => {
+  //   const updated = [...passengerDetails];
+  //   updated[index] = { ...updated[index], [field]: value };
+  //   setPassengerDetails(updated);
+  // };
 
-  const handleContactChange = (field, value) => {
-    setContactDetails(prev => ({ ...prev, [field]: value }));
-  };
+  // const handleContactChange = (field, value) => {
+  //   setContactDetails(prev => ({ ...prev, [field]: value }));
+  // };
 
   const validateForm = () => {
     // Check if passenger details exist
@@ -108,7 +116,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
     // Simulate payment processing
     setTimeout(() => {
       setIsProcessing(false);
-      alert('🎉 Payment Successful! You will receive your ticket to your email.');
+      alert('Payment Successful! You will receive your ticket to your email.');
       navigate('/');
     }, 3000);
   };
@@ -209,7 +217,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
               borderLeft: '4px solid #f39c12'
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '24px' }}>⚠️</span>
+                <span style={{ fontSize: '24px' }}><FaExclamationTriangle /></span>
                 <div>
                   <h4 style={{ margin: '0 0 5px 0', color: '#856404' }}>Missing Passenger Information</h4>
                   <p style={{ margin: 0, color: '#856404' }}>
@@ -224,7 +232,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
           {/* Passenger Summary */}
           <div className="payment-section">
             <div className="section-header">
-              <h3>👥 Passenger Summary</h3>
+              <h3><FaUsers /> Passenger Summary</h3>
               <p>Review passenger details before payment</p>
             </div>
             
@@ -240,7 +248,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
                           <span className="seat-number">Seat: {passenger?.seatNumber || 'Unknown'}</span>
                         </div>
                         <div className="passenger-summary-details error">
-                          <span className="error-message">⚠️ Incomplete passenger details</span>
+                          <span className="error-message"><FaExclamationTriangle /> Incomplete passenger details</span>
                         </div>
                       </div>
                     );
@@ -263,7 +271,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
               ) : (
                 <div className="passenger-summary-card error">
                   <div className="passenger-summary-header">
-                    <h4>⚠️ No Passenger Details Found</h4>
+                    <h4><FaExclamationTriangle /> No Passenger Details Found</h4>
                   </div>
                   <div className="passenger-summary-details error">
                     <span className="error-message">
@@ -285,7 +293,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
           {/* Contact Summary */}
           <div className="payment-section">
             <div className="section-header">
-              <h3>📧 Contact Summary</h3>
+              <h3><FaEnvelope /> Contact Summary</h3>
               <p>Review contact details before payment</p>
             </div>
             
@@ -301,7 +309,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
                 </>
               ) : (
                 <div className="contact-summary-item error">
-                  <span className="error-message">⚠️ Contact details not found. Please go back to complete contact information.</span>
+                  <span className="error-message"><FaExclamationTriangle /> Contact details not found. Please go back to complete contact information.</span>
                   <button className="btn btn-secondary" onClick={() => navigate('/passenger-info')}>
                     ← Back to Passenger Info
                   </button>
@@ -315,7 +323,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
           {/* Payment Methods */}
           <div className="payment-section">
             <div className="section-header">
-              <h3>💳 Payment Method</h3>
+              <h3><FaCreditCard /> Payment Method</h3>
               <p>Choose your preferred payment method</p>
             </div>
             
@@ -325,7 +333,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
                 onClick={() => setPaymentMethod('upi')}
               >
                 <div className="method-info">
-                  <div className="method-icon">📱</div>
+                  <div className="method-icon"><FaMobile /></div>
                   <div className="method-details">
                     <h4>UPI</h4>
                     <p>Pay using Google Pay, PhonePe, Paytm</p>
@@ -343,7 +351,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
                 onClick={() => setPaymentMethod('card')}
               >
                 <div className="method-info">
-                  <div className="method-icon">💳</div>
+                  <div className="method-icon"><FaCreditCard /></div>
                   <div className="method-details">
                     <h4>Credit/Debit Card</h4>
                     <p>Visa, Mastercard, RuPay cards accepted</p>
@@ -361,7 +369,7 @@ const Payment = ({ bookingData, updateBookingData }) => {
                 onClick={() => setPaymentMethod('netbanking')}
               >
                 <div className="method-info">
-                  <div className="method-icon">🏦</div>
+                  <div className="method-icon"><FaUniversity /></div>
                   <div className="method-details">
                     <h4>Net Banking</h4>
                     <p>All major banks supported</p>

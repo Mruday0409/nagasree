@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTicketAlt } from 'react-icons/fa';
 import './OffersSection.css';
 
 const OffersSection = () => {
@@ -52,7 +53,7 @@ const OffersSection = () => {
                 <button className="offer-copy-btn">Copy Code</button>
               </div>
               <div className="offer-decoration">
-                <div className="offer-icon">🎫</div>
+                <div className="offer-icon"><FaTicketAlt /></div>
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FaPhone, FaEnvelope, FaComment, FaClipboardList, FaScroll } from 'react-icons/fa';
 import './Help.css';
 
 const Help = () => {
@@ -35,19 +36,19 @@ const Help = () => {
     {
       type: 'Phone',
       value: '+91 80-1234-5678',
-      icon: '📞',
+      icon: <FaPhone />,
       description: 'Call us 24/7 for immediate assistance'
     },
     {
       type: 'Email',
       value: 'support@nagasreetravels.com',
-      icon: '📧',
+      icon: <FaEnvelope />,
       description: 'Email us for detailed queries'
     },
     {
       type: 'WhatsApp',
       value: '+91 80-1234-5678',
-      icon: '💬',
+      icon: <FaComment />,
       description: 'Chat with us on WhatsApp'
     }
   ];
@@ -84,19 +85,19 @@ const Help = () => {
             className={`nav-btn ${activeSection === 'faq' ? 'active' : ''}`}
             onClick={() => setActiveSection('faq')}
           >
-            📋 FAQ
+            <FaClipboardList /> FAQ
           </button>
           <button 
             className={`nav-btn ${activeSection === 'contact' ? 'active' : ''}`}
             onClick={() => setActiveSection('contact')}
           >
-            📞 Contact Us
+            <FaPhone /> Contact Us
           </button>
           <button 
             className={`nav-btn ${activeSection === 'policies' ? 'active' : ''}`}
             onClick={() => setActiveSection('policies')}
           >
-            📜 Policies
+            <FaScroll /> Policies
           </button>
         </div>
 

@@ -1,5 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  FaHome, 
+  FaUser, 
+  FaBars, 
+  FaShoppingCart, 
+  FaPrint, 
+  FaTimes, 
+  FaPhone, 
+  FaBus, 
+  FaClipboardList, 
+  FaBolt, 
+  FaSearch, 
+  FaCheck, 
+  FaClock 
+} from 'react-icons/fa';
 import './Admin.css';
 
 const Admin = () => {
@@ -31,6 +46,14 @@ const Admin = () => {
   const handleQuickFind = () => {
     // Handle quick find logic
     console.log('Quick find:', quickFindData);
+  };
+
+  const handleQuickBookSwap = () => {
+    setQuickBookData(prev => ({
+      ...prev,
+      origin: prev.destination,
+      destination: prev.origin
+    }));
   };
 
   const handleLogout = () => {
@@ -84,9 +107,9 @@ const Admin = () => {
           </div>
           <div className="header-right">
             <div className="header-icons">
-              <button className="icon-btn">🏠</button>
-              <button className="icon-btn">👤</button>
-              <button className="icon-btn hamburger-menu">☰</button>
+              <button className="icon-btn"><FaHome /></button>
+              <button className="icon-btn"><FaUser /></button>
+              <button className="icon-btn hamburger-menu"><FaBars /></button>
             </div>
             <button className="logout-btn" onClick={handleLogout}>Logout</button>
           </div>
@@ -111,28 +134,28 @@ const Admin = () => {
             {/* Quick Actions */}
             <div className="quick-actions">
               <div className="action-grid">
-                <button className="action-btn book-tickets">
-                  <div className="action-icon">🛒</div>
+                <button className="action-btn book-tickets" onClick={() => navigate('/admin/booking')}>
+                  <div className="action-icon"><FaShoppingCart /></div>
                   <span>Book Tickets</span>
                 </button>
                 <button className="action-btn print-tickets">
-                  <div className="action-icon">🖨️</div>
+                  <div className="action-icon"><FaPrint /></div>
                   <span>Print Tickets</span>
                 </button>
                 <button className="action-btn cancel-tickets">
-                  <div className="action-icon">❌</div>
+                  <div className="action-icon"><FaTimes /></div>
                   <span>Cancel Tickets</span>
                 </button>
                 <button className="action-btn phone-bookings">
-                  <div className="action-icon">📞</div>
+                  <div className="action-icon"><FaPhone /></div>
                   <span>Phone Bookings</span>
                 </button>
                 <button className="action-btn trips">
-                  <div className="action-icon">🚌</div>
+                  <div className="action-icon"><FaBus /></div>
                   <span>Trips</span>
                 </button>
                 <button className="action-btn vanpickup-chart">
-                  <div className="action-icon">📋</div>
+                  <div className="action-icon"><FaClipboardList /></div>
                   <span>Vanpickup Chart</span>
                 </button>
               </div>
@@ -141,7 +164,7 @@ const Admin = () => {
             {/* Quick Book */}
             <div className="quick-book-section">
               <div className="section-header">
-                <span className="section-icon">⚡</span>
+                <span className="section-icon"><FaBolt /></span>
                 <span className="section-title">Quick Book</span>
               </div>
               <div className="quick-book-form">
@@ -157,7 +180,7 @@ const Admin = () => {
                     <option value="Thirthahalli">Thirthahalli</option>
                     <option value="Kammaradi">Kammaradi</option>
                   </select>
-                  <button className="swap-btn">⇄</button>
+                  <button className="swap-btn" onClick={handleQuickBookSwap}>⇄</button>
                   <select 
                     value={quickBookData.destination}
                     onChange={(e) => setQuickBookData({...quickBookData, destination: e.target.value})}
@@ -185,7 +208,7 @@ const Admin = () => {
             {/* Quick Find */}
             <div className="quick-find-section">
               <div className="section-header">
-                <span className="section-icon">🔍</span>
+                <span className="section-icon"><FaSearch /></span>
                 <span className="section-title">Quick Find</span>
               </div>
               <div className="quick-find-form">
@@ -208,7 +231,7 @@ const Admin = () => {
             {/* Notifications */}
             <div className="notifications-section">
               <div className="section-header">
-                <span className="section-icon">☑️</span>
+                <span className="section-icon"><FaCheck /></span>
                 <span className="section-title">Notifications</span>
               </div>
               <div className="notifications-content">
@@ -219,7 +242,7 @@ const Admin = () => {
             {/* Recent Bookings */}
             <div className="recent-bookings-section">
               <div className="section-header">
-                <span className="section-icon">🕐</span>
+                <span className="section-icon"><FaClock /></span>
                 <span className="section-title">Recent Bookings</span>
               </div>
               <div className="bookings-table">

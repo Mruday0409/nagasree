@@ -10,6 +10,7 @@ import Payment from './pages/Payment';
 import Help from './pages/Help';
 import Profile from './pages/Profile';
 import Admin from './pages/Admin';
+import AdminBooking from './pages/AdminBooking';
 import './App.css';
 
 // Component to handle navbar visibility
@@ -51,8 +52,8 @@ const AppContent = ({ bookingData, updateBookingData }) => {
     };
   }, []);
 
-  // Show navbar unless we're on admin page AND admin is logged in
-  const shouldShowNavbar = !(location.pathname === '/admin' && isAdminLoggedIn);
+  // Show navbar unless we're on admin pages AND admin is logged in
+  const shouldShowNavbar = !((location.pathname === '/admin' || location.pathname === '/admin/booking') && isAdminLoggedIn);
 
   return (
     <div className="App">
@@ -69,6 +70,7 @@ const AppContent = ({ bookingData, updateBookingData }) => {
         <Route path="/help" element={<Help />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/booking" element={<AdminBooking />} />
         <Route path="*" element={<Home bookingData={bookingData} updateBookingData={updateBookingData} />} />
       </Routes>
     </div>
