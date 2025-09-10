@@ -61,8 +61,8 @@ const Admin = () => {
     localStorage.removeItem('nagasree_admin_user');
     // Dispatch event to notify other components
     window.dispatchEvent(new CustomEvent('adminStateChanged'));
-    // Force a page reload to ensure clean state
-    window.location.href = '/';
+    // Use React Router navigation instead of page reload
+    navigate('/');
   };
 
   if (!isAdminLoggedIn) {
